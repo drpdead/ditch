@@ -1,7 +1,7 @@
 # Package
 
-version       = "0.2.2"
-author        = "sfome"
+version       = "0.3.2"
+author        = "sfome" # Maintainer: Infinitybeond1 (ripples)
 description   = "System fetch in nim lang"
 license       = "MIT"
 

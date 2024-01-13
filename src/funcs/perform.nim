@@ -3,12 +3,12 @@ import
   ../assets/assets
 
 # if if no flag
-proc arg0*() =
-  drawInfo(true)
+proc arg0*(arg: uint8) =
+  drawInfo(true, arg)
 
 # if -a --no-ascii flags
-proc arg1*() =
-  drawInfo(false)
+proc arg1*(arg: uint8) =
+  drawInfo(false, arg)
 
 # if -h --help flags
 proc arg2*() =

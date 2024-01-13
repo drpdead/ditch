@@ -2,10 +2,11 @@ func argParser*(args: seq[string], argCount: int): uint8 =
 
   # list of constant args
   const
-    argsList: array[6, string] = [
+    argsList: array[8, string] = [
     "-a", "--no-ascii",
     "-h", "--help",
-    "-v", "--version"
+    "-v", "--version",
+    "-s", "--square"
     ]
 
   # if no flags
@@ -26,4 +27,8 @@ func argParser*(args: seq[string], argCount: int): uint8 =
 
     # if -v --version flags
     of argsList[4..5]:
-      result = 3 # return 2
+      result = 3 # return 3
+
+    # if -s --square flags
+    of argsList[6..7]:
+      result = 4 # return 4

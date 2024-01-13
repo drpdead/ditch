@@ -3,19 +3,18 @@ import
   flags/argParser, # import arg parser from nitch/flags/argParser
   funcs/perform # perform funcs for flags
 
-let
-  arg = argParser(commandLineParams(), paramCount()) # called argParser with args seq and amount of args
+let arg* = argParser(commandLineParams(), paramCount()) # called argParser with args seq and amount of args
 
 # case return of argParser
 case arg:
 
 # if no flags
 of 0:
-  arg0() # cal arg0 func from perform
+  arg0(arg) # cal arg0 func from perform
 
 # if -a --no-ascii flags
 of 1:
-  arg1() # cal arg1 func from perform
+  arg1(arg) # cal arg1 func from perform
 
 # if -h --help flags
 of 2:
@@ -27,4 +26,6 @@ of 3:
 
 # nim xdd
 else:
-  arg0()
+  arg0(arg)
+
+export arg

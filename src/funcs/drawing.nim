@@ -1,6 +1,7 @@
 import
   std/terminal,     # import standard terminal lib
   std/strutils,
+  std/strformat,
   getDistroId,      # import to get distro id through /etc/os-release
   ../assets/logos,  # uncomment if you use your own logo
   ../nitches/[getUser, getHostname,
@@ -9,7 +10,7 @@ import
                   getPkgs, getRam, getLogo]  # import nitches to get info about user system
 
 # the main function for drawing fetch
-proc drawInfo*(asciiArt: bool) =
+proc drawInfo*(asciiArt: bool, arg: uint8) =
   let  # distro id (arch, manjaro, debian)
     distroId = getDistroId()
 
@@ -65,6 +66,11 @@ proc drawInfo*(asciiArt: bool) =
     color8 = fgBlack
     color0 = fgDefault
 
+  var corners = @["╭", "╮", "╰", "╯"]
+
+  if arg == 4:
+    corners = @["┌", "┐", "└", "┘"]
+
   # ascii art
   if not asciiArt:
     discard
@@ -72,7 +78,7 @@ proc drawInfo*(asciiArt: bool) =
     stdout.styledWrite(styleBright, coloredLogo[0], coloredLogo[1], color0)
 
   # colored out
-    stdout.styledWrite("\n", styleBright, "  ╭───────────╮\n")
+    stdout.styledWrite("\n", styleBright, "  " & corners[0] & "───────────" & corners[1] & "\n")
     stdout.styledWrite("  │ ", color2, userIcon, color0, userCat, color1, userInfo, color0, "\n",)
     if not isEmptyOrWhitespace(hostnameInfo):
       stdout.styledWrite("  │ ", color2, hnameIcon, color0, hnameCat, color2, hostnameInfo, color0, "\n")
@@ -84,4 +90,4 @@ proc drawInfo*(asciiArt: bool) =
     stdout.styledWrite("  │ ", color2, ramIcon, color0, ramCat, fgYellow, ramInfo, color0, "\n")
     stdout.styledWrite("  ├───────────┤\n")
     stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, color0, "\n")
-    stdout.styledWrite("  ╰───────────╯\n\n")
+    stdout.styledWrite(fmt"  " & corners[2] & "───────────" & corners[3] & "\n\n")

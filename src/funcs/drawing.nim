@@ -10,7 +10,7 @@ import
                   getPkgs, getRam, getLogo]  # import nitches to get info about user system
 
 # the main function for drawing fetch
-proc drawInfo*(asciiArt: bool, arg: uint8) =
+proc drawInfo*(asciiArt: bool, square: bool) =
   let  # distro id (arch, manjaro, debian)
     distroId = getDistroId()
 
@@ -66,28 +66,28 @@ proc drawInfo*(asciiArt: bool, arg: uint8) =
     color8 = fgBlack
     color0 = fgDefault
 
+  # default corners
   var corners = @["╭", "╮", "╰", "╯"]
 
-  if arg == 4:
+  # square corners
+  if square:
     corners = @["┌", "┐", "└", "┘"]
 
   # ascii art
-  if not asciiArt:
-    discard
-  else:
+  if asciiArt:
     stdout.styledWrite(styleBright, coloredLogo[0], coloredLogo[1], color0)
 
   # colored out
-    stdout.styledWrite("\n", styleBright, "  " & corners[0] & "───────────" & corners[1] & "\n")
-    stdout.styledWrite("  │ ", color2, userIcon, color0, userCat, color1, userInfo, color0, "\n",)
-    if not isEmptyOrWhitespace(hostnameInfo):
-      stdout.styledWrite("  │ ", color2, hnameIcon, color0, hnameCat, color2, hostnameInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color3, distroIcon, color0, distroCat, color3, distroInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color4, kernelIcon, color0, kernelCat, color4, kernelInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color5, uptimeIcon, color0, uptimeCat, color5, uptimeInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color6, shellIcon, color0, shellCat, color6, shellInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color1, pkgsIcon, color0, pkgsCat, color1, pkgsInfo, color0, "\n")
-    stdout.styledWrite("  │ ", color2, ramIcon, color0, ramCat, fgYellow, ramInfo, color0, "\n")
-    stdout.styledWrite("  ├───────────┤\n")
-    stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, color0, "\n")
-    stdout.styledWrite(fmt"  " & corners[2] & "───────────" & corners[3] & "\n\n")
+  stdout.styledWrite("\n", styleBright, "  " & corners[0] & "───────────" & corners[1] & "\n")
+  stdout.styledWrite("  │ ", color2, userIcon, color0, userCat, color1, userInfo, color0, "\n",)
+  if not isEmptyOrWhitespace(hostnameInfo):
+    stdout.styledWrite("  │ ", color2, hnameIcon, color0, hnameCat, color2, hostnameInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color3, distroIcon, color0, distroCat, color3, distroInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color4, kernelIcon, color0, kernelCat, color4, kernelInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color5, uptimeIcon, color0, uptimeCat, color5, uptimeInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color6, shellIcon, color0, shellCat, color6, shellInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color1, pkgsIcon, color0, pkgsCat, color1, pkgsInfo, color0, "\n")
+  stdout.styledWrite("  │ ", color2, ramIcon, color0, ramCat, fgYellow, ramInfo, color0, "\n")
+  stdout.styledWrite("  ├───────────┤\n")
+  stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, color0, "\n")
+  stdout.styledWrite(fmt"  " & corners[2] & "───────────" & corners[3] & "\n\n")

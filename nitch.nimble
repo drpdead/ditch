@@ -11,4 +11,4 @@ bin           = @["nitch"]
 
 # Dependencies
 
-requires "nim >= 1.6.6"
+requires "nim >= 1.6.6", "therapist"

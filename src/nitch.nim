@@ -1,31 +1,8 @@
 import
-  std/os, # import os module from stdlib
-  flags/argParser, # import arg parser from nitch/flags/argParser
-  funcs/perform # perform funcs for flags
+  therapist,
+  flags/args, # import arg parser from nitch/flags/argParser
+  funcs/drawing
 
-let arg* = argParser(commandLineParams(), paramCount()) # called argParser with args seq and amount of args
+spec.parseOrQuit()
 
-# case return of argParser
-case arg:
-
-# if no flags
-of 0:
-  arg0(arg) # cal arg0 func from perform
-
-# if -a --no-ascii flags
-of 1:
-  arg1(arg) # cal arg1 func from perform
-
-# if -h --help flags
-of 2:
-  arg2() # cal arg1 func from perform
-
-# if -v --version flags
-of 3:
-  arg3() # cal arg2 func from perform
-
-# nim xdd
-else:
-  arg0(arg)
-
-export arg
+drawInfo(spec.ascii.seen, spec.square.seen)

@@ -34,8 +34,13 @@ Requirements:
 - nim
 - nimble (usually included with your nim installation)
 ```fish
-nimble install https://github.com/arashi-software/nitch
+git clone https://github.com/arashi-software/nitch && cd nitch
 ```
+make changes to `src/funcs/drawing.nim` if desired; then compile/install nitch with
+```fish
+nimble install
+```
+*There are also binaries availble on the release page*
 
 # Usage 🪨
 ```
@@ -62,25 +67,6 @@ Options:
 ### `nitch` is configured by changing the source code
 ### `src/funcs/drawing.nim` - config file
 
-# Building 📦
-### 0) install [nim](https://nim-lang.org/)
-
-### 1) clone repo
-```fish
-git clone https://github.com/unxsh/nitch.git
-```
-### 2) change dir to `nitch`
-```fish
-cd nitch/
-```
-
-### 3) build program with `nimble`
-```fish
-nimble build
-```
-After that you will get a ready-made binary file in the root directory of the project.
-
-<br>
 
 # File architecture 📁
 ```fish
@@ -138,6 +124,11 @@ nitch
 
 8 directories, 43 files
 ```
+
+# Showcase ![image](https://github.com/arashi-software/nitch/assets/88919270/d3d534c6-dee0-400f-b8fa-304051caf10a)
+![image](https://github.com/arashi-software/nitch/assets/88919270/7ecb988b-ab71-4056-a5c7-b403c523e989)
+
+
 
 # Thanks for ideas & examples 💬
 - [pfetch](https://github.com/dylanaraps/pfetch/)

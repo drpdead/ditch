@@ -6,3 +6,4 @@ proc getDistroId*(): string =
     osRelease = "/etc/os-release".loadConfig
 
   result = osRelease.getSectionValue("", "ID")
+

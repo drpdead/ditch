@@ -3,7 +3,7 @@ import
   ../assets/assets
 
 # if if no flag
-proc arg0*(arg: uint8) =
+proc arg0*() =
   drawInfo(true, arg)
 
 # if -a --no-ascii flags

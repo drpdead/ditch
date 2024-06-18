@@ -17,6 +17,8 @@ proc drawInfo*(asciiArt: bool, square: bool) =
   let  # logo and it color
     coloredLogo = getLogo(distroId)  # color + logo tuple
     # (fgRed, nitchLogo)
+  let 
+    coloredLogo2 = (fgRed, artixLogo)
 
   const  # icons before cotegores
     userIcon   = " "  # recomended: " " or "|>"
@@ -66,7 +68,7 @@ proc drawInfo*(asciiArt: bool, square: bool) =
     color8 = fgBlack
     color0 = fgDefault
 
-  # default corners
+ # default corners
   var corners = @["╭", "╮", "╰", "╯"]
 
   # square corners
@@ -74,8 +76,8 @@ proc drawInfo*(asciiArt: bool, square: bool) =
     corners = @["┌", "┐", "└", "┘"]
 
   # ascii art
-  if asciiArt:
-    stdout.styledWrite(styleBright, coloredLogo[0], coloredLogo[1], color0)
+  if not asciiArt:
+    discard
 
   # colored out
   stdout.styledWrite("\n", styleBright, "  " & corners[0] & "───────────" & corners[1] & "\n")
@@ -91,3 +93,7 @@ proc drawInfo*(asciiArt: bool, square: bool) =
   stdout.styledWrite("  ├───────────┤\n")
   stdout.styledWrite("  │ ", color7, colorsIcon, color0, colorsCat, color7, dotIcon, " ", color1, dotIcon, " ", color2, dotIcon, " ", color3, dotIcon, " ", color4, dotIcon, " ", color5, dotIcon, " ", color6, dotIcon, " ", color8, dotIcon, color0, "\n")
   stdout.styledWrite(fmt"  " & corners[2] & "───────────" & corners[3] & "\n\n")
+  stdout.styledWrite(styleBright, coloredLogo[0], coloredLogo[1], color0)
+
+    
+
